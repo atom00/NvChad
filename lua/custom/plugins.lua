@@ -70,6 +70,8 @@ local plugins = {
         "clang-format",
         "codelldb",
         "rust-analyzer",
+        "pyright",
+        "black",
       }
     }
   }

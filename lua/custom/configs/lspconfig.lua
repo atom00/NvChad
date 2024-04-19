@@ -50,3 +50,5 @@ lspconfig.rust_analyzer.setup{
   end,
   capabilities = capabilities,
 }
+
+lspconfig.pyright.setup{}
