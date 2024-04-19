@@ -128,20 +128,12 @@ M.lspconfig = {
   plugin = true,
 
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
-
   n = {
     ["gD"] = {
       function()
         vim.lsp.buf.declaration()
       end,
       "LSP declaration",
-    },
-
-    ["gd"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition",
     },
 
     ["K"] = {
@@ -184,13 +176,6 @@ M.lspconfig = {
         vim.lsp.buf.code_action()
       end,
       "LSP code action",
-    },
-
-    ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
-      "LSP references",
     },
 
     ["<leader>lf"] = {
@@ -289,6 +274,9 @@ M.telescope = {
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
+
+    ["gd"] = { "<cmd>Telescope lsp_definitions<CR>", "Definitions" },
+    ["gr"] = { "<cmd>Telescope lsp_references<CR>", "References" },
   },
 }
 
