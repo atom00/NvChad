@@ -49,6 +49,10 @@ local plugins = {
     end
   },
   {
+    "wellle/context.vim",
+    lazy = false,
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
     event = "VeryLazy",
     opts = function()
