@@ -119,6 +119,10 @@ local default_plugins = {
   {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
+    init = function()
+      require("core.utils").load_mappings "lspconfig"
+    end,
+
     config = function()
       require "plugins.configs.lspconfig"
     end,
@@ -241,6 +245,18 @@ local default_plugins = {
       require("which-key").setup(opts)
     end,
   },
+  {
+    "ThePrimeagen/harpoon",
+    keys = { "<leader>a", "<C-e>"},
+    cmd = "Harpoon",
+    opts = function()
+      require "plugins.configs.harpoon"
+    end,
+    config = function (_, opts)
+      local harpoon = require "harpoon"
+      harpoon.setup(opts)
+    end
+  }
 }
 
 local config = require("core.utils").load_config()

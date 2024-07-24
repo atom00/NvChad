@@ -5,6 +5,22 @@ local plugins = {
     dependencies = "mfussenegger/nvim-dap",
     config = function()
       local dap = require("dap")
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "-i", "dap" }
+      }
+      dap.configurations.cpp = {
+        {
+          name = "Attach",
+          type = "gdb",
+          request = "attach",
+          pid = function ()
+            return tonumber(vim.fn.input('Attach to pid: '))
+          end,
+          stopAtBeginningOfMainSubprogram = false,
+        },
+      }
       local dapui = require("dapui")
       dapui.setup()
       dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -32,6 +48,15 @@ local plugins = {
     "nvim-neotest/nvim-nio"
   },
   {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+  },
+  {
+    "wellle/context.vim",
+    lazy = false,
+  },
+  {
     "jay-babu/mason-nvim-dap.nvim",
     event = "VeryLazy",
     dependencies = {
@@ -41,6 +66,7 @@ local plugins = {
     opts = {
       handlers = {}
     },
+    ensure_installed = {"gdb"},
   },
   {
     "mfussenegger/nvim-dap",
@@ -69,7 +95,6 @@ local plugins = {
         "clangd",
         "clang-format",
         "codelldb",
-        "rust-analyzer",
         "pyright",
         "black",
       }

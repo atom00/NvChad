@@ -29,6 +29,9 @@ M.general = {
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
+    ["g."] = {"<cmd> cnext <CR>", "Next quick list"},
+    ["g,"] = {"<cmd> cprev <CR>", "Prev quick list"},
+
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "Toggle relative number" },
@@ -51,6 +54,15 @@ M.general = {
         vim.lsp.buf.format { async = true }
       end,
       "LSP formatting",
+    },
+    ["<leader>fs"] = {
+      function ()
+        local filepath = vim.fn.expand "%:p"
+        vim.cmd('let @+ = "' .. filepath ..'"')
+        vim.api.nvim_echo({{vim.fn.expand "%:p", 'None'}}, false, {})
+      end,
+      "Show filepath",
+      opts = {noremap = true, silent = true},
     },
   },
 
@@ -166,7 +178,7 @@ M.lspconfig = {
 
     ["<leader>ra"] = {
       function()
-        require("nvchad.renamer").open()
+        vim.lsp.buf.rename()
       end,
       "LSP rename",
     },
@@ -250,6 +262,25 @@ M.nvimtree = {
   },
 }
 
+M.harpoon = {
+  plugin = true,
+
+  n = {
+    ["<leader>a"] = {
+      function ()
+        vim.harpoon.list().add()
+      end,
+      "Harpoon add",
+    },
+    ["<C-e>"] = {
+      function ()
+        vim.harpoon.ui.toggle_quick_menu(vim.harpoon.list())
+      end,
+      "Harpoon Toggle quick menu",
+    },
+  },
+}
+
 M.telescope = {
   plugin = true,
 
@@ -265,6 +296,7 @@ M.telescope = {
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
+    ["<leader>gl"] = { "<cmd> Telescope git_bcommits <CR>", "Git log" },
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
