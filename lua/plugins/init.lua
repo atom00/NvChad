@@ -23,6 +23,18 @@ local default_plugins = {
     init = function()
       require("core.utils").load_mappings "nvterm"
     end,
+    opts = {
+      terminals = {
+        type_opts = {
+          float = {
+            row = 0.02,
+            col = 0.01,
+            width = 0.98,
+            height = 0.9,
+          },
+        },
+      },
+    },
     config = function(_, opts)
       require "base46.term"
       require("nvterm").setup(opts)
@@ -256,6 +268,39 @@ local default_plugins = {
       local harpoon = require "harpoon"
       harpoon.setup(opts)
     end
+  },
+  {
+    "Badhi/nvim-treesitter-cpp-tools",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {"<leader>cd", "<leader>ci", "<leader>c3", "<leader>c5"},
+    lazy = false,
+    -- Optional: Configuration
+    opts = function()
+        local options = {
+            preview = {
+                quit = "q", -- optional keymapping for quit preview
+                accept = "<enter>", -- optional keymapping for accept preview
+            },
+            header_extension = "h", -- optional
+            source_extension = "cpp", -- optional
+            custom_define_class_function_commands = { -- optional
+                TSCppImplWrite = {
+                    output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
+                },
+                --[[
+                <your impl function custom command name> = {
+                    output_handle = function (str, context) 
+                        -- string contains the class implementation
+                        -- do whatever you want to do with it
+                    end
+                }
+                ]]
+            },
+        }
+        return options
+    end,
+    -- End configuration
+    config = true,
   }
 }
 

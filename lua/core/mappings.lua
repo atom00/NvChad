@@ -22,6 +22,7 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
+    ["<C-p>"] = { "<C-i>", "Next jumplist"},
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
@@ -64,6 +65,11 @@ M.general = {
       "Show filepath",
       opts = {noremap = true, silent = true},
     },
+    ["<leader>cd"] = { "<cmd> TSCppDefineClassFunc <CR>", "Implement OOC member function"},
+    ["<leader>ci"] = { "<cmd> TSCppMakeConcreteClass <CR>", "Create concrete class"},
+    ["<leader>c3"] = { "<cmd> TSCppRuleOf3 <CR>", "Rule of 3"},
+    ["<leader>c5"] = { "<cmd> TSCppRuleOf5 <CR>", "Rule of 5"},
+
   },
 
   t = {
@@ -293,6 +299,7 @@ M.telescope = {
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>fd"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find symbol" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
