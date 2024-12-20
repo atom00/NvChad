@@ -9,6 +9,7 @@ g.toggle_theme_icon = "   "
 g.transparency = config.ui.transparency
 
 -------------------------------------- options ------------------------------------------
+opt.shell = "zsh"
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
 

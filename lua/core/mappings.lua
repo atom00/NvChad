@@ -68,7 +68,23 @@ M.general = {
     ["<leader>cd"] = { "<cmd> TSCppDefineClassFunc <CR>", "Implement OOC member function"},
     ["<leader>ci"] = { "<cmd> TSCppMakeConcreteClass <CR>", "Create concrete class"},
     ["<leader>c3"] = { "<cmd> TSCppRuleOf3 <CR>", "Rule of 3"},
-    ["<leader>c5"] = { "<cmd> TSCppRuleOf5 <CR>", "Rule of 5"},
+    ["<leader>c5"] = { "<cmd> SCppRuleOf5 <CR>", "Rule of 5"},
+    ["<leader>cce"] = { "<cmd> CopilotChatExplain <CR>", "Copilot Chat Explain"},
+    ["<leader>ccr"] = { "<cmd> CopilotChatReview <CR>", "Copilot Chat Review"},
+    ["<leader>ccf"] = { "<cmd> CopilotChatFix <CR>", "Copilot Chat Fix"},
+    ["<leader>cco"] = { "<cmd> CopilotChatOptimize <CR>", "Copilot Chat Optimize"},
+    ["<leader>ccd"] = { "<cmd> CopilotChatDocs <CR>", "Copilot Chat Docs"},
+    ["<leader>cct"] = { "<cmd> CopilotChatTest <CR>", "Copilot Chat Test"},
+    ["<leader>ccc"] = { "<cmd> CopilotChatCommit <CR>", "Copilot Chat Commit"},
+    ["<leader>ccq"] = {
+    function()
+      local input = vim.fn.input("Quick Chat: ")
+      if input ~= "" then
+        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+      end
+    end,
+    "CopilotChat - Quick chat",
+    }
 
   },
 
@@ -81,6 +97,22 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
+    ["<leader>cce"] = { "<cmd> CopilotChatExplain <CR>", "Copilot Chat Explain"},
+    ["<leader>ccr"] = { "<cmd> CopilotChatReview <CR>", "Copilot Chat Review"},
+    ["<leader>ccf"] = { "<cmd> CopilotChatFix <CR>", "Copilot Chat Fix"},
+    ["<leader>cco"] = { "<cmd> CopilotChatOptimize <CR>", "Copilot Chat Optimize"},
+    ["<leader>ccd"] = { "<cmd> CopilotChatDocs <CR>", "Copilot Chat Docs"},
+    ["<leader>cct"] = { "<cmd> CopilotChatTest <CR>", "Copilot Chat Test"},
+    ["<leader>ccc"] = { "<cmd> CopilotChatCommit <CR>", "Copilot Chat Commit"},
+    ["<leader>ccq"] = {
+    function()
+      local input = vim.fn.input("Quick Chat: ")
+      if input ~= "" then
+        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+      end
+    end,
+    "CopilotChat - Quick chat",
+    }
   },
 
   x = {
@@ -408,24 +440,23 @@ M.whichkey = {
 
 M.blankline = {
   plugin = true,
-
-  n = {
-    ["<leader>cc"] = {
-      function()
-        local ok, start = require("indent_blankline.utils").get_current_context(
-          vim.g.indent_blankline_context_patterns,
-          vim.g.indent_blankline_use_treesitter_scope
-        )
-
-        if ok then
-          vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-          vim.cmd [[normal! _]]
-        end
-      end,
-
-      "Jump to current context",
-    },
-  },
+  -- n = {
+  --   ["<leader>cc"] = {
+  --     function()
+  --       local ok, start = require("indent_blankline.utils").get_current_context(
+  --         vim.g.indent_blankline_context_patterns,
+  --         vim.g.indent_blankline_use_treesitter_scope
+  --       )
+  --
+  --       if ok then
+  --         vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
+  --         vim.cmd [[normal! _]]
+  --       end
+  --     end,
+  --
+  --     "Jump to current context",
+  --   },
+  -- },
 }
 
 M.gitsigns = {
@@ -476,13 +507,14 @@ M.gitsigns = {
       "Preview hunk",
     },
 
-    ["<leader>gb"] = {
-      function()
-        package.loaded.gitsigns.blame_line()
-      end,
-      "Blame line",
-    },
+    -- ["<leader>gb"] = {
+    --   function()
+    --     package.loaded.gitsigns.blame_line()
+    --   end,
+    --   "Blame line",
+    -- },
 
+    ["<leader>gb"] = { "<cmd> BlameToggle <CR>", "Git blame" },
     ["<leader>td"] = {
       function()
         require("gitsigns").toggle_deleted()

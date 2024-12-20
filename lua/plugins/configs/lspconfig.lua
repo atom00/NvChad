@@ -5,13 +5,13 @@ local M = {}
 local utils = require "core.utils"
 
 -- export on_attach & capabilities for custom lspconfigs
--- M.on_attach = function(client, bufnr)
---   utils.load_mappings("lspconfig", { buffer = bufnr })
---
---   if client.server_capabilities.signatureHelpProvider then
---     require("nvchad.signature").setup(client)
---   end
--- end
+M.on_attach = function(client, bufnr)
+  utils.load_mappings("lspconfig", { buffer = bufnr })
+
+  if client.server_capabilities.signatureHelpProvider then
+    require("nvchad.signature").setup(client)
+  end
+end
 
 -- disable semantic tokens
 M.on_init = function(client, _)
