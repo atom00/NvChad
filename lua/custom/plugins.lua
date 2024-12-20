@@ -95,7 +95,8 @@ local plugins = {
         "clangd",
         "clang-format",
         "codelldb",
-        "pyright",
+        -- "pyright",
+        "jedi-language-server",
         "black",
       }
     }
