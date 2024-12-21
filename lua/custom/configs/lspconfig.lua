@@ -33,3 +33,4 @@ lspconfig.clangd.setup {
 }
 
 lspconfig.pyright.setup{}
+lspconfig.gdscript.setup{}

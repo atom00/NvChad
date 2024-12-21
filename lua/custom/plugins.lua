@@ -97,6 +97,7 @@ local plugins = {
         "codelldb",
         "pyright",
         "black",
+        "gdscript"
       }
     }
   },
