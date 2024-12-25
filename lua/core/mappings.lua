@@ -65,6 +65,7 @@ M.general = {
       "Show filepath",
       opts = {noremap = true, silent = true},
     },
+    ["<C-m>"] = { "<cmd> lua vim.diagnostic.open_float() <CR>", "Open full diagnostic message"},
     ["<leader>cd"] = { "<cmd> TSCppDefineClassFunc <CR>", "Implement OOC member function"},
     ["<leader>ci"] = { "<cmd> TSCppMakeConcreteClass <CR>", "Create concrete class"},
     ["<leader>c3"] = { "<cmd> TSCppRuleOf3 <CR>", "Rule of 3"},
