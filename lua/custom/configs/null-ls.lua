@@ -6,6 +6,10 @@ local opts = {
     null_ls.builtins.formatting.clang_format,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.ruff,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.beautysh,
+    -- null_ls.builtins.diagnostics.flake8,
   },
   on_attach = function(client, bufnr)
     if client.supports_method "textDocument/formatting" then

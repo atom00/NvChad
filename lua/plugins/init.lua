@@ -191,12 +191,12 @@ local default_plugins = {
   {
     "numToStr/Comment.nvim",
     keys = {
-      { "gcc", mode = "n", desc = "Comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "Comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n",          desc = "Comment toggle current line" },
+      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n",          desc = "Comment toggle current block" },
+      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
     init = function()
       require("core.utils").load_mappings "comment"
@@ -247,6 +247,7 @@ local default_plugins = {
   -- Only load whichkey after all the gui
   {
     "folke/which-key.nvim",
+    lazy = false,
     keys = { "<leader>", "<c-r>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     init = function()
       require("core.utils").load_mappings "whichkey"
@@ -259,49 +260,99 @@ local default_plugins = {
   },
   {
     "ThePrimeagen/harpoon",
-    keys = { "<leader>a", "<C-e>"},
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = { "<leader>a", "<C-e>" },
     cmd = "Harpoon",
-    opts = function()
-      require "plugins.configs.harpoon"
+    keys = {
+      {
+        "<leader>a",
+        function()
+          require("harpoon"):list():add()
+        end,
+        desc = "Harpoon add",
+      },
+      {
+        "<C-e>",
+        function()
+          local harpoon = require "harpoon"
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = "Harpoon Toggle quick menu",
+      },
+      {
+        "<leader>1",
+        function()
+          require("harpoon"):list():select(1)
+        end,
+        desc = "Harpoon to file 1",
+      },
+      {
+        "<leader>2",
+        function()
+          require("harpoon"):list():select(2)
+        end,
+        desc = "Harpoon to file 2",
+      },
+      {
+        "<leader>3",
+        function()
+          require("harpoon"):list():select(3)
+        end,
+        desc = "Harpoon to file 3",
+      },
+      {
+        "<leader>4",
+        function()
+          require("harpoon"):list():select(4)
+        end,
+        desc = "Harpoon to file 4",
+      },
+      {
+        "<leader>5",
+        function()
+          require("harpoon"):list():select(5)
+        end,
+        desc = "Harpoon to file 5",
+      },
+    },
+    config = function(_, opts)
+      require("harpoon"):setup(opts)
     end,
-    config = function (_, opts)
-      local harpoon = require "harpoon"
-      harpoon.setup(opts)
-    end
   },
   {
     "Badhi/nvim-treesitter-cpp-tools",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    keys = {"<leader>cd", "<leader>ci", "<leader>c3", "<leader>c5"},
+    keys = { "<leader>cd", "<leader>ci", "<leader>c3", "<leader>c5" },
     lazy = false,
     -- Optional: Configuration
     opts = function()
-        local options = {
-            preview = {
-                quit = "q", -- optional keymapping for quit preview
-                accept = "<enter>", -- optional keymapping for accept preview
-            },
-            header_extension = "h", -- optional
-            source_extension = "cpp", -- optional
-            custom_define_class_function_commands = { -- optional
-                TSCppImplWrite = {
-                    output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
-                },
-                --[[
+      local options = {
+        preview = {
+          quit = "q",                             -- optional keymapping for quit preview
+          accept = "<enter>",                     -- optional keymapping for accept preview
+        },
+        header_extension = "h",                   -- optional
+        source_extension = "cpp",                 -- optional
+        custom_define_class_function_commands = { -- optional
+          TSCppImplWrite = {
+            output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
+          },
+          --[[
                 <your impl function custom command name> = {
-                    output_handle = function (str, context) 
+                    output_handle = function (str, context)
                         -- string contains the class implementation
                         -- do whatever you want to do with it
                     end
                 }
                 ]]
-            },
-        }
-        return options
+        },
+      }
+      return options
     end,
     -- End configuration
     config = true,
-  }
+  },
 }
 
 local config = require("core.utils").load_config()

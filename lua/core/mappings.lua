@@ -22,7 +22,7 @@ M.general = {
     ["<C-l>"] = { "<C-w>l", "Window right" },
     ["<C-j>"] = { "<C-w>j", "Window down" },
     ["<C-k>"] = { "<C-w>k", "Window up" },
-    ["<C-p>"] = { "<C-i>", "Next jumplist"},
+    ["<C-p>"] = { "<C-i>", "Next jumplist" },
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
@@ -30,8 +30,8 @@ M.general = {
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
-    ["g."] = {"<cmd> cnext <CR>", "Next quick list"},
-    ["g,"] = {"<cmd> cprev <CR>", "Prev quick list"},
+    ["g."] = { "<cmd> cnext <CR>", "Next quick list" },
+    ["g,"] = { "<cmd> cprev <CR>", "Prev quick list" },
 
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "Toggle line number" },
@@ -57,35 +57,34 @@ M.general = {
       "LSP formatting",
     },
     ["<leader>fs"] = {
-      function ()
+      function()
         local filepath = vim.fn.expand "%:p"
-        vim.cmd('let @+ = "' .. filepath ..'"')
-        vim.api.nvim_echo({{vim.fn.expand "%:p", 'None'}}, false, {})
+        vim.cmd('let @+ = "' .. filepath .. '"')
+        vim.api.nvim_echo({ { vim.fn.expand "%:p", "None" } }, false, {})
       end,
       "Show filepath",
-      opts = {noremap = true, silent = true},
+      opts = { noremap = true, silent = true },
     },
-    ["<leader>cd"] = { "<cmd> TSCppDefineClassFunc <CR>", "Implement OOC member function"},
-    ["<leader>ci"] = { "<cmd> TSCppMakeConcreteClass <CR>", "Create concrete class"},
-    ["<leader>c3"] = { "<cmd> TSCppRuleOf3 <CR>", "Rule of 3"},
-    ["<leader>c5"] = { "<cmd> SCppRuleOf5 <CR>", "Rule of 5"},
-    ["<leader>cce"] = { "<cmd> CopilotChatExplain <CR>", "Copilot Chat Explain"},
-    ["<leader>ccr"] = { "<cmd> CopilotChatReview <CR>", "Copilot Chat Review"},
-    ["<leader>ccf"] = { "<cmd> CopilotChatFix <CR>", "Copilot Chat Fix"},
-    ["<leader>cco"] = { "<cmd> CopilotChatOptimize <CR>", "Copilot Chat Optimize"},
-    ["<leader>ccd"] = { "<cmd> CopilotChatDocs <CR>", "Copilot Chat Docs"},
-    ["<leader>cct"] = { "<cmd> CopilotChatTest <CR>", "Copilot Chat Test"},
-    ["<leader>ccc"] = { "<cmd> CopilotChatCommit <CR>", "Copilot Chat Commit"},
+    ["<leader>cd"] = { "<cmd> TSCppDefineClassFunc <CR>", "Implement OOC member function" },
+    ["<leader>ci"] = { "<cmd> TSCppMakeConcreteClass <CR>", "Create concrete class" },
+    ["<leader>c3"] = { "<cmd> TSCppRuleOf3 <CR>", "Rule of 3" },
+    ["<leader>c5"] = { "<cmd> SCppRuleOf5 <CR>", "Rule of 5" },
+    ["<leader>cce"] = { "<cmd> CopilotChatExplain <CR>", "Copilot Chat Explain" },
+    ["<leader>ccr"] = { "<cmd> CopilotChatReview <CR>", "Copilot Chat Review" },
+    ["<leader>ccf"] = { "<cmd> CopilotChatFix <CR>", "Copilot Chat Fix" },
+    ["<leader>cco"] = { "<cmd> CopilotChatOptimize <CR>", "Copilot Chat Optimize" },
+    ["<leader>ccd"] = { "<cmd> CopilotChatDocs <CR>", "Copilot Chat Docs" },
+    ["<leader>cct"] = { "<cmd> CopilotChatTest <CR>", "Copilot Chat Test" },
+    ["<leader>ccc"] = { "<cmd> CopilotChatCommit <CR>", "Copilot Chat Commit" },
     ["<leader>ccq"] = {
-    function()
-      local input = vim.fn.input("Quick Chat: ")
-      if input ~= "" then
-        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-      end
-    end,
-    "CopilotChat - Quick chat",
-    }
-
+      function()
+        local input = vim.fn.input "Quick Chat: "
+        if input ~= "" then
+          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+        end
+      end,
+      "CopilotChat - Quick chat",
+    },
   },
 
   t = {
@@ -97,22 +96,22 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
     [">"] = { ">gv", "Indent line" },
-    ["<leader>cce"] = { "<cmd> CopilotChatExplain <CR>", "Copilot Chat Explain"},
-    ["<leader>ccr"] = { "<cmd> CopilotChatReview <CR>", "Copilot Chat Review"},
-    ["<leader>ccf"] = { "<cmd> CopilotChatFix <CR>", "Copilot Chat Fix"},
-    ["<leader>cco"] = { "<cmd> CopilotChatOptimize <CR>", "Copilot Chat Optimize"},
-    ["<leader>ccd"] = { "<cmd> CopilotChatDocs <CR>", "Copilot Chat Docs"},
-    ["<leader>cct"] = { "<cmd> CopilotChatTest <CR>", "Copilot Chat Test"},
-    ["<leader>ccc"] = { "<cmd> CopilotChatCommit <CR>", "Copilot Chat Commit"},
+    ["<leader>cce"] = { "<cmd> CopilotChatExplain <CR>", "Copilot Chat Explain" },
+    ["<leader>ccr"] = { "<cmd> CopilotChatReview <CR>", "Copilot Chat Review" },
+    ["<leader>ccf"] = { "<cmd> CopilotChatFix <CR>", "Copilot Chat Fix" },
+    ["<leader>cco"] = { "<cmd> CopilotChatOptimize <CR>", "Copilot Chat Optimize" },
+    ["<leader>ccd"] = { "<cmd> CopilotChatDocs <CR>", "Copilot Chat Docs" },
+    ["<leader>cct"] = { "<cmd> CopilotChatTest <CR>", "Copilot Chat Test" },
+    ["<leader>ccc"] = { "<cmd> CopilotChatCommit <CR>", "Copilot Chat Commit" },
     ["<leader>ccq"] = {
-    function()
-      local input = vim.fn.input("Quick Chat: ")
-      if input ~= "" then
-        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-      end
-    end,
-    "CopilotChat - Quick chat",
-    }
+      function()
+        local input = vim.fn.input "Quick Chat: "
+        if input ~= "" then
+          require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+        end
+      end,
+      "CopilotChat - Quick chat",
+    },
   },
 
   x = {
@@ -305,13 +304,13 @@ M.harpoon = {
 
   n = {
     ["<leader>a"] = {
-      function ()
+      function()
         vim.harpoon.list().add()
       end,
       "Harpoon add",
     },
     ["<C-e>"] = {
-      function ()
+      function()
         vim.harpoon.ui.toggle_quick_menu(vim.harpoon.list())
       end,
       "Harpoon Toggle quick menu",
@@ -332,6 +331,7 @@ M.telescope = {
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
     ["<leader>fd"] = { "<cmd> Telescope lsp_dynamic_workspace_symbols <CR>", "Find symbol" },
+    ["<leader>fe"] = { "<cmd> Telescope harpoon marks <CR>", "Open harpoon marks" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },

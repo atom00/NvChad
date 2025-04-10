@@ -46,7 +46,7 @@ local options = {
       preview_cutoff = 120,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
-    file_ignore_patterns = { "node_modules", "tests", "third_party", "benchmarks", "test", "docs", "scripts" },
+    file_ignore_patterns = { "node_modules", "third_party", "benchmarks", "docs" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = { "truncate" },
     winblend = 0,
@@ -67,7 +67,7 @@ local options = {
     },
   },
 
-  extensions_list = { "themes", "terms" },
+  extensions_list = { "themes", "terms", "harpoon" },
 }
 
 return options
