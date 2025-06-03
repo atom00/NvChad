@@ -13,6 +13,17 @@ local select_one_or_multi = function(prompt_bufnr)
   end
 end
 
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopePreviewerLoaded",
+  callback = function(args)
+    if args.data.filetype ~= "help" then
+      vim.wo.number = true
+    elseif args.data.bufname:match "*.csv" then
+      vim.wo.wrap = false
+    end
+  end,
+})
+
 local options = {
   defaults = {
     vimgrep_arguments = {
@@ -46,7 +57,7 @@ local options = {
       preview_cutoff = 120,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
-    file_ignore_patterns = { "node_modules", "third_party", "benchmarks", "docs" },
+    file_ignore_patterns = { "test", "node_modules", "third_party", "benchmarks", "docs" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = { "truncate" },
     winblend = 0,

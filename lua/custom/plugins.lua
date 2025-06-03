@@ -47,11 +47,6 @@ local plugins = {
   {
     "nvim-neotest/nvim-nio",
   },
-  -- {
-  --   "ThePrimeagen/harpoon",
-  --   branch = "harpoon2",
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  -- },
   {
     "wellle/context.vim",
     lazy = false,
@@ -72,13 +67,6 @@ local plugins = {
     "mfussenegger/nvim-dap",
     config = function(_, _)
       require("core.utils").load_mappings "dap"
-    end,
-  },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return require "custom.configs.null-ls"
     end,
   },
   {
@@ -112,27 +100,27 @@ local plugins = {
       require("blame").setup {}
     end,
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      }
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "zbirenbaum/copilot.lua",
-    },
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup {
+  --       suggestion = { enabled = false },
+  --       panel = { enabled = false },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   event = "InsertEnter",
+  --   dependencies = {
+  --     "zbirenbaum/copilot.lua",
+  --   },
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  -- },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     lazy = false,
@@ -140,14 +128,13 @@ local plugins = {
       { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
-    build = "make tiktoken",                          -- Only on MacOS or Linux
+    build = "make tiktoken", -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
       prompts = {
         Warhammer = {
           prompt = "Explain how it works.",
-          system_prompt =
-          "You are a priest of Adeptus Mechanicus. You have been tasked with the maintenance of the Machine God's holy codebase. Make sure you're using language appropriate to your role.",
+          system_prompt = "You are a priest of Adeptus Mechanicus. You have been tasked with the maintenance of the Machine God's holy codebase. Make sure you're using language appropriate to your role.",
           mapping = "ccwe",
           description = "Warhammer copilot",
         },
@@ -161,6 +148,13 @@ local plugins = {
     config = function()
       require "custom.configs.diffview"
       require("core.utils").load_mappings "diffview"
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = "VeryLazy",
+    opts = function()
+      return require "custom.configs.conform"
     end,
   },
 }
