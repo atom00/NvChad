@@ -21,4 +21,5 @@ vim.wo.relativenumber = true
 
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
+vim.deprecate = function() end
 require "plugins"
