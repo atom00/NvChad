@@ -87,6 +87,7 @@ local plugins = {
         "black",
         "ruff",
         "isort",
+        "usort",
         "flake8",
         "bash-language-server",
         "beautysh",
