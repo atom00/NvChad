@@ -191,12 +191,12 @@ local default_plugins = {
   {
     "numToStr/Comment.nvim",
     keys = {
-      { "gcc", mode = "n",          desc = "Comment toggle current line" },
-      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n",          desc = "Comment toggle current block" },
-      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n", desc = "Comment toggle current line" },
+      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n", desc = "Comment toggle current block" },
+      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
     },
     init = function()
       require("core.utils").load_mappings "comment"
@@ -329,11 +329,11 @@ local default_plugins = {
     opts = function()
       local options = {
         preview = {
-          quit = "q",                             -- optional keymapping for quit preview
-          accept = "<enter>",                     -- optional keymapping for accept preview
+          quit = "q", -- optional keymapping for quit preview
+          accept = "<enter>", -- optional keymapping for accept preview
         },
-        header_extension = "h",                   -- optional
-        source_extension = "cpp",                 -- optional
+        header_extension = "h", -- optional
+        source_extension = "cpp", -- optional
         custom_define_class_function_commands = { -- optional
           TSCppImplWrite = {
             output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
